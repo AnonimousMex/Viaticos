@@ -90,8 +90,9 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         <header className="mb-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h1 className="text-5xl font-black text-slate-800 tracking-tighter italic">SISTEMA DE VIÁTICOS</h1>
-            <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] text-blue-600">Tecnológico de Estudios Superiores</p>
+            <h1 className="text-2xl font-black italic">COORDINACIÓN DE TRANSPORTE</h1>
+            <h2 className="text-xl font-bold text-slate-700">SISTEMA DE VIÁTICOS PARTIDA 44102</h2>
+            <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] text-blue-600">INSTITUTO TECNOLÓGICO DE MORELIA</p>
           </div>
           <div className="flex gap-3">
             <button onClick={() => { setRegistroAEditar(null); setMostrarModal(true); }} className="bg-blue-800 text-white px-8 py-3 rounded-2xl font-black shadow-lg hover:bg-blue-900 transition-all uppercase italic text-sm">➕ NUEVO VIÁTICO</button>
@@ -111,11 +112,14 @@ export default function Home() {
           </div>
         )}
 
+        {/* Tarjetas de Departamentos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {resumen.map(item => (
             <div key={item.id} className={`p-6 rounded-[2.5rem] border-4 bg-white transition-all shadow-sm ${seleccionada?.id === item.id ? 'border-blue-600 scale-105 shadow-xl' : 'border-transparent hover:border-slate-200'}`}>
               <div className="flex justify-between items-start mb-2">
-                <h3 onClick={() => verDetalles(item)} className="text-[10px] font-black text-blue-600 uppercase tracking-widest cursor-pointer truncate w-4/5">{item.nombre}</h3>
+                <h3 onClick={() => verDetalles(item)} className="text-[9px] font-black text-blue-600 uppercase tracking-tight leading-tight min-h-[40px] flex items-center cursor-pointer w-4/5">
+                  {item.nombre}
+                </h3>
                 <button onClick={() => editarPresupuesto(item.id, item.presupuesto_inicial)} className="text-slate-300 hover:text-orange-500 transition-colors text-xs">✏️</button>
               </div>
               <div onClick={() => verDetalles(item)} className="cursor-pointer">
@@ -126,6 +130,7 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Historial Detallado */}
         {seleccionada && (
           <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
             <div className="bg-slate-900 p-6 flex justify-between items-center text-white italic">
